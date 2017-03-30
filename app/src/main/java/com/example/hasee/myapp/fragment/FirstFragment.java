@@ -186,6 +186,8 @@ public class FirstFragment extends Fragment  {
             for (int i = 0; i < cricleImageViews.length; i++) {
                 if (position == i){
                     cricleImageViews[position].setImageResource(R.mipmap.green_dot);
+
+
                 }
                 else {
                     cricleImageViews[i].setImageResource(R.mipmap.dark_dot);
