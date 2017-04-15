@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.internal.view.menu.MenuPopupHelper;
 import android.support.v7.widget.PopupMenu;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
 import com.example.hasee.myapp.R;
+import com.example.hasee.myapp.activity.CateActivity;
 import com.example.hasee.myapp.activity.QrActivity;
 import com.example.hasee.myapp.adapter.MenuPagerAdapter;
 
@@ -31,7 +35,7 @@ import java.util.List;
 /**
  * Created by hasee on 2017/3/14.
  */
-public class FirstFragment extends Fragment  {
+public class FirstFragment extends Fragment {
 
     //下拉菜单
     private RadioButton scanButton;
@@ -46,6 +50,7 @@ public class FirstFragment extends Fragment  {
 
     //viewPager下面的小圆圈
     private ImageView[] cricleImageViews;
+
 
 
     @Nullable
@@ -70,7 +75,6 @@ public class FirstFragment extends Fragment  {
 
         //分类菜单
         initView();
-
 
         return view;
     }
@@ -136,12 +140,14 @@ public class FirstFragment extends Fragment  {
         views.add(inflater.inflate(R.layout.first_fra_menu_one,null));
         views.add(inflater.inflate(R.layout.first_fra_menu_two,null));
 
-        menuPagerAdapter = new MenuPagerAdapter(views);
+        menuPagerAdapter = new MenuPagerAdapter(views,getActivity());
         cricleImageViews = new ImageView[views.size()];
         drawCricle();
 
         menuViewPager.setAdapter(menuPagerAdapter);
         menuViewPager.addOnPageChangeListener(new MenuPagerChangeListener());
+
+
 
 
     }
@@ -171,6 +177,64 @@ public class FirstFragment extends Fragment  {
         }
     }
 
+//    //分类菜单的转跳
+//    private void showMenu(View view){
+//
+//        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        switch (view.getId()){
+//            case R.id.first_cate:
+//                break;
+//            case R.id.first_movie:
+//                break;
+//            case R.id.first_stay:
+//                break;
+//            case R.id.first_entertainment:
+//                break;
+//            case R.id.first_take_out:
+//                break;
+//            case R.id.first_fare:
+//                break;
+//            case R.id.first_ktv:
+//                break;
+//            case R.id.first_outside:
+//                break;
+//            case R.id.first_hair:
+//                break;
+//            case R.id.first_travel:
+//                break;
+//
+//            //后十个
+//            case R.id.first_room:
+//                break;
+//            case R.id.first_fitness:
+//                break;
+//            case R.id.first_life:
+//                break;
+//            case R.id.first_mother:
+//                break;
+//            case R.id.first_marry:
+//                break;
+//            case R.id.first_sign:
+//                break;
+//            case R.id.first_zoo:
+//                break;
+//            case R.id.first_haircut:
+//                break;
+//            case R.id.first_foot:
+//                break;
+//            case R.id.first_all:
+//                break;
+//            default:
+//                break;
+//
+//        }
+//        //提交上面的代码
+//        fragmentTransaction.commit();
+//
+//
+//    }
+
 
     //监听分类菜单翻页滑动
     private class MenuPagerChangeListener implements ViewPager.OnPageChangeListener{
@@ -186,7 +250,6 @@ public class FirstFragment extends Fragment  {
             for (int i = 0; i < cricleImageViews.length; i++) {
                 if (position == i){
                     cricleImageViews[position].setImageResource(R.mipmap.green_dot);
-
 
                 }
                 else {
