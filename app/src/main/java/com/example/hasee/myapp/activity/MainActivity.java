@@ -1,4 +1,4 @@
-package com.example.hasee.myapp;
+package com.example.hasee.myapp.activity;
 
 import android.app.ActionBar;
 import android.graphics.Color;
@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hasee.myapp.R;
 import com.example.hasee.myapp.fragment.FirstFragment;
 import com.example.hasee.myapp.fragment.IndentFragment;
 import com.example.hasee.myapp.fragment.LookFragment;
@@ -247,8 +248,4 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         }
 
     }
-
-
-
-
 }
